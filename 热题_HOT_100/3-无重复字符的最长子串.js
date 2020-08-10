@@ -26,16 +26,16 @@ const lengthOfLongestSubstring1 = function(s) {
 const lengthOfLongestSubstring2 = function(s) {
   // 解法2 移动窗口
   let hashSet = new Set() // 哈希集合
-  let left = -1, right = 0 // 左右指针
+  let pointer = -1, length = 0 // 左右指针
   for (let i = 0; i < s.length; i++) {
     if (i !== 0) hashSet.delete(s.charAt(i - 1))
-    while (left + 1 < s.length && !hashSet.has(s.charAt(left + 1))) {
-      hashSet.add(s.charAt(left + 1))
-      left++
+    while (pointer + 1 < s.length && !hashSet.has(s.charAt(pointer + 1))) {
+      hashSet.add(s.charAt(pointer + 1))
+      pointer++
     }
-    right = Math.max(right, left + 1 - i)
+    length = Math.max(length, pointer + 1 - i)
   }
-  return right
+  return length
 };
 
 console.log('最长子串长度为:' + lengthOfLongestSubstring2(s))
